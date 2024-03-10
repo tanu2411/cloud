@@ -1,0 +1,8 @@
+import dropbox
+dropbox_access_token='sl.BUTEvih4dpk6Cma3FXLv2ToJfIGwWDJ6WmruJdbLeDFVLGqoE7g_Jcmy2Yfujqz_eHH0Rr82G0gWDIASZUQgDo6co4WrbN-YiuG5JgKiOGBRc7WlanGHglTejJhuqZ8LMLxdaWq9gvRF' 
+dropbox_path= "/Prac6/aa.txt"
+computer_path="aa.txt"
+client = dropbox.Dropbox(dropbox_access_token)
+print("[SUCCESS] dropbox account linked")
+client.files_upload(open(computer_path, "rb").read(), dropbox_path)
+print("[UPLOADED] {}".format(computer_path))
