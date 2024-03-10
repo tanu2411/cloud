@@ -6,3 +6,6 @@ client = dropbox.Dropbox(dropbox_access_token)
 print("[SUCCESS] dropbox account linked")
 client.files_upload(open(computer_path, "rb").read(), dropbox_path)
 print("[UPLOADED] {}".format(computer_path))
+
+
+#https://www.wisdomaxis.com/technology/software/data/for-reports/
