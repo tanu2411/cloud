@@ -1,0 +1,25 @@
+#To install Chef workstation, search on google for ‘chef workstation windows setup’ and select the first link
+#Select the windows downloads page and download the most stable version of the installer
+#Run the downloaded MSI installer and once finished, open the cw powershell 
+
+chef
+chef generate cookbook admin
+tree
+chef gem install kitchen-door
+#Go to the directory of the admin cookbook and edit the kitchen.yml file as follows
+Driver:
+Name: docker
+Transport:
+Name: docker
+
+Platforms:
+-name: exec
+Driver:
+Name: exec
+-name:exec
+
+# Now type the following commands
+kitchen create
+kitchen list
+kitchen converge
+kitchen list
