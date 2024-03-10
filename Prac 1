@@ -1,0 +1,194 @@
+#Open Eclipse IDE and create a new Maven project
+
+#Select the catalog as internal and below that select the last option of the list
+mentioning ‘web_app’ and click ‘Next’
+
+#Enter the group_id: com.udcs and artifact_id: firstwebapp
+
+#Open pom.xml and edit to match the following
+<project
+xmlns="http://maven.apache.org/POM/4.0.0"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+http://maven.apache.org/maven-v4_0_0.xsd">
+<modelVersion>4.0.0</modelVersion>
+<groupId>com.gjccs</groupId>
+<artifactId>FirstWebApp</artifactId>
+<packaging>war</packaging>
+<version>0.0.1-SNAPSHOT</version>
+<name>FirstWebApp Maven Webapp</name>
+<properties>
+<jdk.version>1.7</jdk.version>
+<spring.version>3.2.13.RELEASE</spring.version>
+<jstl.version>1.2</jstl.version>
+</properties>
+<dependencies>
+<dependency>
+<groupId>org.springframework</groupId>
+<artifactId>spring-webmvc</artifactId>
+<version>${spring.version}</version>
+</dependency>
+<dependency>
+<groupId>javax.servlet</groupId>
+<artifactId>jstl</artifactId>
+<version>${jstl.version}</version>
+</dependency>
+</dependencies>
+<build>
+<plugins>
+<plugin>
+<groupId>org.apache.maven.plugins</groupId>
+<artifactId>maven-compiler-plugin</artifactId>
+<version>3.3</version>
+<configuration>
+<source>${jdk.version}</source>
+<target>${jdk.version}</target>
+</configuration>
+</plugin>
+<plugin>
+<groupId>org.apache.maven.plugins</groupId>
+<artifactId>maven-war-plugin</artifactId>
+<version>3.3.1</version>
+</plugin>
+<plugin>
+<groupId>org.eclipse.jetty</groupId>
+<artifactId>jetty-maven-plugin</artifactId>
+<version>9.2.11.v20150529</version>
+<configuration>
+<scanIntervalSeconds>10</scanIntervalSeconds>
+<webApp>
+<contextPath>/spring3</contextPath>
+</webApp>
+</configuration>
+</plugin>
+<plugin>
+<groupId>org.apache.maven.plugins</groupId>
+<artifactId>maven-eclipse-plugin</artifactId>
+<version>2.9</version>
+<configuration>
+<downloadSources>true</downloadSources>
+<downloadJavadocs>true</downloadJavadocs>
+<wtpversion>2.0</wtpversion>
+<wtpContextName>spring3</wtpContextName>
+</configuration>
+</plugin>
+</plugins>
+</build>
+</project>
+
+# Go to web.xml in src/main/webapp/web-inf and edit it as shown below
+<web-app
+xmlns="http://java.sun.com/xml/ns/javaee"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+version="2.5">
+<display-name>MVC Application</display-name>
+<servlet>
+<servlet-name>spring-web</servlet-name>
+<servletclass>org.springframework.web.servlet.DispatcherServlet
+</servlet-class>
+<load-on-startup>1</load-on-startup>
+<!--
+
+<init-param><param-name>contextConfigLocation</param-name><param-value>/WEB-
+INF/spring-mvc-config.xml</param-value></init-param>
+
+-->
+</servlet>
+<servlet-mapping>
+<servlet-name>spring-web</servlet-name>
+<url-pattern>/</url-pattern>
+</servlet-mapping>
+</web-app>
+
+#Right click on web-inf and create XML file named ‘spring-web-servlet.xml’ and edit as follows
+<beans
+xmlns="http://www.springframework.org/schema/beans"
+xmlns:context="http://www.springframework.org/schema/context"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:mvc="http://www.springframework.org/schema/mvc"
+xsi:schemaLocation="
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+http://www.springframework.org/schema/mvc
+http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+<context:component-scan base-package="com.udcs" />
+<bean
+class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+
+<property name="prefix">
+<value>/WEB-INF/views/</value>
+</property>
+<property name="suffix">
+<value>.jsp</value>
+</property>
+</bean>
+<mvc:resources mapping="/resources/**" location="/resources/" />
+<mvc:annotation-driven />
+</beans>
+
+#Create new folder in WEB-INF as ‘views and a subfolder as ‘jsp’ and create a ‘hello.jsp’
+
+#Right click on src/main/resources in the file explorer and create new folder named ‘java’ but
+select ‘main’ in the folder creating wizard before that
+
+#Create a java class in java folder named ‘hellocontroller.java’ as shown below
+
+#Edit HelloController.java
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+public class RegexMatches {
+public static void main(String args[]) {
+// String to be scanned to find the pattern.
+String line = "This order was placed for QT3000! OK?";
+String pattern = "(.*)(\\d+)(.*)";
+// Create a Pattern object
+Pattern r = Pattern.compile(pattern);
+// Now create matcher object.
+Matcher m = r.matcher(line);
+if (m.find()) {
+System.out.println("Found value: " + m.group(0));
+System.out.println("Found value: " + m.group(1));
+System.out.println("Found value: " + m.group(2));
+} else {
+System.out.println("NO MATCH");
+}
+}
+}
+
+#Edit the ‘hello.jsp’ file
+mySelection = app.activeDocument.selection;
+myDoc = app.activeDocument;
+if (mySelection instance of Array) 
+{
+selSwatches = myDoc.swatches.getSelected();
+if(selSwatches.length !=0)
+for (i=0; i<mySelection.length; i++)
+{
+if(mySelection[i].typename == "PathItem" | | mySelection[i].typename == "CompoundPathItem")
+{
+selItem = mySelection[i];
+selItem.filled = true;
+swatchIndex = Math.round( Math.random() *
+(selSwatches.length - 1 ));
+if(selItem.typename == "PathItem")
+selItem.fillColor = selSwatches[swatchIndex].color;
+else
+selItem.pathItems[0].fillColor =
+selSwatches[swatchIndex].color;
+}
+}
+}
+
+#In IDE, right click on firstwebapp > Maven > update Project > check on ‘force update
+snapshot’ > Finish
+
+#Right click on project > run as > Maven build
+
+#In the following pop-up, enter the goals as ‘clean install’
+
+#Right click on project > Run as > Run on server > Apache Tomcat v9 > select any file in
+configured > Finish
