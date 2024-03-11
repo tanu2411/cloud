@@ -3,6 +3,9 @@
 #go to https://www.dropbox.com/ip/developers and click on create apps
 #click on generate, copy the generated access token and app key into a notepad file for later use
 #go to permissions and check on all the permissions and after that click submit
+#upload a random notepad file in prac5 folder
+
+#https://dropbox.com/home and download .xlsx file and upload it in prac5 folder
 #https://dropbox.com/developers/apps
 #https://colab.research.google.com/
 
@@ -16,7 +19,7 @@ client.files_upload(open(computer_path, "rb").read(), dropbox_path)
 print("[UPLOADED] {}".format(computer_path))
 
 #https://www.wisdomaxis.com/technology/software/data/for-reports/
-https://about.appsheet.com/home/
+#https://about.appsheet.com/home/
 #create > app > start with existing data
 #create new app as prac5 app
 #select new data source > dropbox
